@@ -1,0 +1,19 @@
+BEGIN TRANSACTION;
+
+UPDATE Students
+SET Marks = 85
+WHERE StudentID = 1;
+
+SAVE TRANSACTION SavePoint1;
+
+UPDATE Students
+SET Marks = 40
+WHERE StudentID = 2;
+
+SELECT * FROM Students;
+
+ROLLBACK TRANSACTION SavePoint1;
+
+COMMIT;
+
+SELECT * FROM Students;

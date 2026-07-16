@@ -1,0 +1,11 @@
+BEGIN TRANSACTION;
+
+UPDATE Students
+SET Marks = 20
+WHERE StudentID = 2;
+
+SELECT * FROM Students;
+
+ROLLBACK;
+
+SELECT * FROM Students;

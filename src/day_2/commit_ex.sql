@@ -1,0 +1,9 @@
+BEGIN TRANSACTION;
+
+UPDATE Students
+SET Marks = 95
+WHERE StudentID = 1;
+
+SELECT * FROM Students;
+
+COMMIT;
