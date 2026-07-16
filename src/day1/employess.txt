@@ -1,0 +1,110 @@
+employess
+ Column       | Description       |
+| ------------ | ----------------- |
+| EmployeeID   | PK                |
+| EmployeeName | Employee Name     |
+| Salary       | Employee Salary   |
+| DepartmentID | FK to Departments |
+
+Departments
+
+| Column         | Description                |
+| -------------- | -------------------------- |
+| DepartmentID   | PK                         |
+| DepartmentName | Department Name            |
+| ManagerID      | FK to Employees.EmployeeID |
+
+
+Find employees who work in the HR department.
+select employeeName from employees 
+where department_id =(select departmentID from Department where departmentName='HR')
+
+Find employees whose salary is greater than the company average salary.
+select employeeName from employees where salary >(select avg(salary) form elmployess)
+
+Find departments managed by Emma.
+
+select department_name
+from departments
+where managerID=( select employeeID 
+		  from employees  where employee_name='Emma')
+
+
+Find employees earning more than the average salary of the HR department.
+select employee_name from employees
+where salary > ( select avg(salary) form employees where departmentID= ( select department_id form departments where departmentName='HR'))
+
+Find employees whose salary is equal to the highest salary in the company.
+select employee_name form employees 
+where salary =( select max(salary) from employees )
+
+
+Find employees working in departments managed by managers earning more than ₹80,000.
+
+select employeeName from employees 
+where departmentID IN( select departmentID from departments where manger_id IN ( select employeeid from employees where salary>80000))
+
+
+Question 8 ⭐⭐⭐ (Hard)
+New Schema
+Customers
+
+| CustomerID | CustomerName |
+
+Orders
+
+| OrderID | CustomerID |
+
+Question:
+
+Find customers who have placed at least one order.
+SELECT CustomerName
+FROM Customers
+WHERE CustomerID IN (
+    SELECT CustomerID
+    FROM Orders
+);
+
+
+
+Question 9 ⭐⭐⭐⭐ (Hard)
+Schema
+Products
+
+| ProductID | ProductName | CategoryID |
+
+Categories
+
+| CategoryID | CategoryName |
+
+Question:
+
+Find products belonging to the Electronics category.
+
+select productName from products 
+where categoryID IN (select categoryID from categories where categoryName='Electronics')
+
+
+Question 10 ⭐⭐⭐⭐⭐ (Interview Level)
+Schema
+Employees
+
+| EmployeeID | EmployeeName | Salary | DepartmentID |
+
+Departments
+
+| DepartmentID | DepartmentName | ManagerID |
+
+Question:
+
+Find employees whose salary is greater than the average salary of the department managed by Emma.
+
+
+select employeeName from Employees
+where salary >(select avg(salary) from Employees where departmentID=(select departmentID from Departments where MangerID =(select employeeID from Employees where employeeName='Emma')))
+
+
+Find employees earning more than their department average.
+Find customers who have never placed an order (NOT EXISTS).
+Find products whose price is greater than all products in the same category.
+Find the latest order for each customer.

@@ -1,0 +1,96 @@
+subquery+joins
+
+Question 1 ⭐
+
+Show employee name and department name of employees earning more than the company average salary.
+
+Ask yourself:
+
+Need JOIN?yes
+Need Subquery?yes
+Why? we need to know company average salary 
+
+Then write SQL.
+
+Question 2 ⭐⭐
+
+Show employee name and salary for employees working in the HR department.
+
+Can this be solved using only a JOIN? no since we are displaying from only employee table , we can do this with both join and subquery 
+
+Can it be solved using JOIN + Subquery? join is enough 
+
+Which would you choose in an interview, and why? i would prefere subquery as we are geeting one value from departemtn table for filtering 
+
+Question 3 ⭐⭐⭐
+
+Show department names and the number of employees in each department, but only for departments whose average salary is greater than the company average salary.
+
+
+Employees
+| Column       | Description                |
+| ------------ | -------------------------- |
+| EmployeeID   | Primary Key                |
+| EmployeeName | Employee Name              |
+| Salary       | Employee Salary            |
+| DepartmentID | Foreign Key to Departments |
+
+Departments
+
+| Column         | Description     |
+| -------------- | --------------- |
+| DepartmentID   | Primary Key     |
+| DepartmentName | Department Name |
+
+select d.departmentName , e.count(*) as emp_count,e.avg(salary) as avg_sal
+from employees as e
+inner join departments as d
+on d.depratmentID=e.departmentID
+groupby d.departmentName 
+having avg_sal >( select avg(sal) from employess) 
+
+
+
+3- level subqueries 
+Employees
+------------------------------------------------
+EmployeeID (PK)
+EmployeeName
+Salary
+DepartmentID (FK)
+        │
+        │
+        ▼
+Departments
+------------------------------------------------
+DepartmentID (PK)
+DepartmentName
+ManagerID (FK)
+        ▲
+        │
+EmployeeID (Manager)
+
+
+Question
+
+Find employees whose salary is greater than the average salary of the department managed by David.
+
+SELECT EmployeeName
+FROM Employees
+WHERE Salary >
+(
+    SELECT AVG(Salary)
+    FROM Employees
+    WHERE DepartmentID =
+    (
+        SELECT DepartmentID
+        FROM Departments
+        WHERE ManagerID =
+        (
+            SELECT EmployeeID
+            FROM Employees
+            WHERE EmployeeName = 'David'
+        )
+    )
+);
+

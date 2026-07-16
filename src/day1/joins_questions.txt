@@ -1,0 +1,327 @@
+joins questions :
+Level 1 - Basic Understanding
+Q1
+
+What is a JOIN?
+
+Q2
+
+Why do we use JOINs?
+
+Q3
+
+How many main types of joins are there in SQL Server?
+
+Q4
+
+What is the difference between an INNER JOIN and a LEFT JOIN?
+
+Q5
+
+What is the difference between LEFT JOIN and RIGHT JOIN?
+
+Q6
+
+When does an INNER JOIN return NULL values?
+
+Q7
+
+Can a LEFT JOIN return more rows than an INNER JOIN?
+
+Q8
+
+Can an INNER JOIN return duplicate rows?
+
+Q9
+
+Which join returns every possible combination of rows?
+
+Q10
+
+What is a SELF JOIN?
+
+Level 2 - Predict the Output
+
+Assume these tables.
+
+Employee
+EmpID	Name	DeptID
+1	John	1
+2	Alice	2
+3	Bob	NULL
+4	Charlie	2
+Department
+DeptID	DeptName
+1	HR
+2	IT
+3	Finance
+Q11
+SELECT Name, DeptName
+FROM Employee
+INNER JOIN Department
+ON Employee.DeptID = Department.DeptID;
+
+Predict the output.
+
+Q12
+SELECT Name, DeptName
+FROM Employee
+LEFT JOIN Department
+ON Employee.DeptID = Department.DeptID;
+
+Predict the output.
+
+Q13
+
+Which employee appears in the LEFT JOIN but not in the INNER JOIN?
+
+Q14
+
+Will Finance appear in the LEFT JOIN result?
+
+Why?
+
+Q15
+
+Write a query to display every employee and department even if the employee doesn't belong to any department.
+
+Level 3 - Write Queries
+
+Using the same tables.
+
+Q16
+
+Display employee names with department names.
+
+Q17
+
+Display employees working in IT.
+
+Q18
+
+Display employees without a department.
+
+Q19
+
+Display departments that have no employees.
+
+Q20
+
+Display only employee names.
+
+(No duplicate names.)
+
+Level 4 - SELF JOIN
+
+Table
+
+EmpID	Employee	ManagerID
+1	John	NULL
+2	Alice	1
+3	Bob	1
+4	Charlie	2
+5	David	4
+Q21
+
+Write a query to display
+
+Employee | Manager
+
+Q22
+
+Who is Charlie's manager?
+
+Q23
+
+Who reports to John?
+
+Q24
+
+Find employees who don't have a manager.
+
+Q25
+
+How many employees report to Alice?
+
+Level 5 - CROSS JOIN
+
+Tables
+
+Color
+Color
+Red
+Blue
+Size
+Size
+S
+M
+L
+Q26
+
+How many rows will the CROSS JOIN return?
+
+Q27
+
+Write the CROSS JOIN query.
+
+Q28
+
+When would you use a CROSS JOIN in a real project?
+
+Level 6 - Intermediate
+Q29
+
+Difference between
+
+INNER JOIN
+
+and
+
+WHERE EXISTS
+Q30
+
+Can you join three tables together?
+
+Write the syntax.
+
+Q31
+
+Can you join four tables?
+
+Q32
+
+Can one table be joined multiple times?
+
+Q33
+
+Why do we use aliases?
+
+Q34
+
+Can a join condition contain multiple columns?
+
+Example?
+
+Q35
+
+Can you join tables without foreign keys?
+
+Level 7 - Practical Problems
+Q36
+
+Find customers who never placed an order.
+
+Q37
+
+Find orders without customers.
+
+Q38
+
+Find products that were never sold.
+
+Q39
+
+Find employees earning more than their managers.
+
+(Hint: SELF JOIN)
+
+Q40
+
+Find managers who manage more than five employees.
+
+Level 8 - Frequently Asked Interview Questions
+Q41
+
+Difference between
+
+ON
+
+and
+
+WHERE
+Q42
+
+What happens if you forget the ON condition?
+
+Q43
+
+Why is this dangerous?
+
+SELECT *
+FROM A, B;
+Q44
+
+Difference between
+
+CROSS JOIN
+
+and
+
+INNER JOIN
+Q45
+
+Can a LEFT JOIN become an INNER JOIN accidentally?
+
+Q46
+
+Which is faster?
+
+INNER JOIN or LEFT JOIN?
+
+Why?
+
+Q47
+
+Can SQL Server optimize joins automatically?
+
+Q48
+
+What is a Cartesian Product?
+
+Q49
+
+Can NULL values match in an INNER JOIN?
+
+Q50
+
+What join would you use to find unmatched records?
+
+Challenge Questions (Very Common)
+
+These are the ones many interviewers like because they test your understanding.
+
+Q51
+
+Customers
+
+ID	Name
+1	A
+2	B
+3	C
+
+Orders
+
+OrderID	CustomerID
+101	1
+102	1
+103	2
+
+How many rows does an INNER JOIN produce?
+
+Q52
+
+If one employee belongs to three projects, how many rows will that employee appear in after joining Employees and Projects?
+
+Q53
+
+Can an INNER JOIN increase the number of rows?
+
+Explain.
+
+Q54
+
+Why does a one-to-many relationship produce duplicate-looking rows?
+
+Q55
+
+Explain every join using one real-life example (e.g., students and classes, customers and orders, employees and managers).
